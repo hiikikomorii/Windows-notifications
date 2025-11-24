@@ -36,6 +36,9 @@ def logo_text():
 
 def clear_cmd():
     os.system('cls')
+    time.sleep(0.02)
+    logo()
+    logo_text()
 
 def exit_cmd():
     exit()
@@ -58,7 +61,6 @@ def help_info():
     logo_text()
 
 def show_messagebox(text, title, icon):
-    print(f"{Fore.BLUE}{Style.BRIGHT}[CTYPES]{Style.NORMAL} {Fore.GREEN}Notification was shown{Style.RESET_ALL}\n")
     ctypes.windll.user32.MessageBoxW(0, text, title, icon)
 
 def create_notify():
@@ -95,6 +97,7 @@ def create_notify():
 
             icon_code = notify_icons.get(icon_type)
 
+            print(f"{Fore.BLUE}{Style.BRIGHT}[CTYPES]{Style.NORMAL} {Fore.GREEN}Notification was shown{Style.RESET_ALL}\n")
             threading.Thread(target=show_messagebox, args=(text, title, icon_code)).start()
 
         except Exception:
